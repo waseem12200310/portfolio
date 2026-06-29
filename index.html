@@ -5,68 +5,107 @@
   <title>Waseem Al-Buqai | Back-End Developer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Waseem Al-Buqai - Back-End Developer | PHP & Laravel | RESTful APIs | Scalable Backend">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { darkMode: 'class' }</script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <style>
-    *{font-family:'Inter',sans-serif}
-    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+    *{font-family:'Poppins',sans-serif}
+    code,pre{font-family:'Fira Code',monospace}
+    
+    /* ============ ENHANCED ANIMATIONS ============ */
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes slideInRight{from{opacity:0;transform:translateX(-60px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes glow{0%,100%{box-shadow:0 0 10px rgba(59,130,246,.3)}50%{box-shadow:0 0 30px rgba(59,130,246,.6)}}
+    @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+    @keyframes blobMove{from{transform:translate(0,0) scale(1)}to{transform:translate(40px,30px) scale(1.15)}}
+    @keyframes slideDown{from{opacity:0;transform:translateY(-30px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+    
+    .reveal{opacity:0;transform:translateY(40px);animation:fadeInUp .8s ease-out forwards}
     .reveal.visible{opacity:1;transform:translateY(0)}
-    #navbar{transition:background .3s,box-shadow .3s}
-    #navbar.scrolled{background:rgba(255,255,255,.95);box-shadow:0 1px 20px rgba(0,0,0,.08)}
-    .dark #navbar.scrolled{background:rgba(15,23,42,.95)}
-    .nav-link{position:relative}
-    .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:#3b82f6;transition:width .3s}
+    
+    /* ============ NAVBAR ENHANCEMENTS ============ */
+    #navbar{transition:all .3s cubic-bezier(.4,0,.2,1);backdrop-filter:blur(10px)}
+    #navbar.scrolled{background:rgba(255,255,255,.92);box-shadow:0 4px 40px rgba(0,0,0,.08);border-bottom:1px solid rgba(0,0,0,.04)}
+    .dark #navbar.scrolled{background:rgba(15,23,42,.92);box-shadow:0 4px 40px rgba(0,0,0,.4);border-bottom:1px solid rgba(255,255,255,.05)}
+    
+    .nav-link{position:relative;font-weight:500;letter-spacing:.5px;transition:all .3s}
+    .nav-link::after{content:'';position:absolute;bottom:-5px;left:0;width:0;height:3px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);transition:width .4s cubic-bezier(.34,1.56,.64,1);border-radius:3px}
     .nav-link:hover::after,.nav-link.active::after{width:100%}
-    .hero-gradient{background:linear-gradient(135deg,#eff6ff 0%,#f0fdf4 50%,#faf5ff 100%)}
+    
+    /* ============ HERO SECTION ============ */
+    .hero-gradient{background:linear-gradient(135deg,#eff6ff 0%,#f0fdf4 50%,#faf5ff 100%);position:relative;overflow:hidden}
     .dark .hero-gradient{background:linear-gradient(135deg,#0f172a 0%,#0c1a2e 50%,#130f1e 100%)}
-    .hero-blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.15;animation:blobMove 8s ease-in-out infinite alternate}
-    @keyframes blobMove{from{transform:translate(0,0) scale(1)}to{transform:translate(30px,20px) scale(1.1)}}
-    .card{transition:transform .3s ease,box-shadow .3s ease}
-    .card:hover{transform:translateY(-6px);box-shadow:0 20px 40px -12px rgba(0,0,0,.15)}
-    .dark .card:hover{box-shadow:0 20px 40px -12px rgba(0,0,0,.5)}
-    .skill-bar{height:6px;border-radius:9999px;background:#e5e7eb;overflow:hidden}
-    .dark .skill-bar{background:#374151}
-    .skill-fill{height:100%;border-radius:9999px;background:linear-gradient(90deg,#3b82f6,#8b5cf6);width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
-    .badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:9999px;font-size:12px;font-weight:500}
-    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:999;display:none;align-items:center;justify-content:center;padding:1rem}
-    .modal-overlay.open{display:flex}
-    .modal-box{background:#fff;border-radius:1.25rem;max-width:860px;width:100%;max-height:90vh;overflow-y:auto;animation:modalIn .3s ease}
-    .dark .modal-box{background:#1e293b}
-    @keyframes modalIn{from{opacity:0;transform:scale(.95) translateY(16px)}to{opacity:1;transform:scale(1) translateY(0)}}
-    .timeline-dot{width:14px;height:14px;border-radius:50%;background:#3b82f6;position:absolute;left:-7px;top:6px;box-shadow:0 0 0 4px #eff6ff}
-    .dark .timeline-dot{box-shadow:0 0 0 4px #0f172a}
-    .section-label{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#3b82f6;margin-bottom:8px}
+    .hero-blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.12;animation:blobMove 8s ease-in-out infinite alternate}
     .floating{animation:float 4s ease-in-out infinite}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-    ::-webkit-scrollbar{width:6px}
+    
+    /* ============ CARD ENHANCEMENTS ============ */
+    .card{transition:all .4s cubic-bezier(.4,0,.2,1);border:1px solid rgba(0,0,0,.05)}
+    .dark .card{border-color:rgba(255,255,255,.05)}
+    .card:hover{transform:translateY(-10px) scale(1.01);box-shadow:0 30px 60px -15px rgba(59,130,246,.2)}
+    .dark .card:hover{box-shadow:0 30px 60px -15px rgba(59,130,246,.3)}
+    
+    /* ============ SKILL BARS ============ */
+    .skill-bar{height:8px;border-radius:999px;background:linear-gradient(90deg,#e5e7eb 0%,#f0f1f3 100%);overflow:hidden;position:relative}
+    .dark .skill-bar{background:linear-gradient(90deg,#1e293b 0%,#334155 100%)}
+    .skill-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,#3b82f6 0%,#8b5cf6 50%,#ec4899 100%);background-size:200% 200%;animation:gradientShift 3s ease infinite;width:0;transition:width 1.6s cubic-bezier(.25,.46,.45,.94);box-shadow:0 0 10px rgba(59,130,246,.5)}
+    
+    /* ============ BADGES & CHIPS ============ */
+    .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;transition:all .3s}
+    .chip{background:linear-gradient(135deg,#eff6ff 0%,#f0f9ff 100%);color:#1d4ed8;padding:8px 14px;border-radius:999px;font-size:12px;font-weight:600;border:1px solid rgba(59,130,246,.25);transition:all .3s;letter-spacing:.3px;display:inline-flex;align-items:center;gap:6px}
+    .dark .chip{background:linear-gradient(135deg,#1e3a5f 0%,#172554 100%);color:#93c5fd;border-color:rgba(147,197,253,.25)}
+    .chip:hover{transform:scale(1.08) translateY(-2px);box-shadow:0 6px 20px rgba(59,130,246,.2)}
+    
+    /* ============ MODALS ============ */
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(8px);z-index:999;display:none;align-items:center;justify-content:center;padding:1rem;animation:fadeInUp .3s ease-out}
+    .modal-overlay.open{display:flex}
+    .modal-box{background:#fff;border-radius:1.5rem;max-width:920px;width:100%;max-height:90vh;overflow-y:auto;animation:slideDown .4s cubic-bezier(.34,1.56,.64,1);box-shadow:0 30px 80px rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.3)}
+    .dark .modal-box{background:linear-gradient(135deg,#1e293b 0%,#0f172a 100%);border-color:rgba(255,255,255,.1)}
+    
+    /* ============ TIMELINE ============ */
+    .timeline-dot{width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#8b5cf6);position:absolute;left:-8px;top:10px;box-shadow:0 0 0 6px rgba(59,130,246,.12);transition:all .3s}
+    .dark .timeline-dot{box-shadow:0 0 0 6px rgba(59,130,246,.2)}
+    .timeline-dot:hover{transform:scale(1.4);box-shadow:0 0 25px rgba(59,130,246,.5)}
+    
+    /* ============ SECTION LABEL ============ */
+    .section-label{font-size:13px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;background:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:14px;display:inline-block}
+    
+    /* ============ GRADIENT TEXT ============ */
+    .grad-text{background:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 50%,#ec4899 100%);background-size:200% 200%;animation:gradientShift 4s ease infinite;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:800}
+    
+    /* ============ FILTER BUTTONS ============ */
+    .filter-btn{background:linear-gradient(135deg,#f1f5f9 0%,#e2e8f0 100%);color:#64748b;padding:10px 18px;border-radius:999px;font-weight:600;transition:all .4s cubic-bezier(.4,0,.2,1);border:1px solid rgba(0,0,0,.06);cursor:pointer;letter-spacing:.5px}
+    .dark .filter-btn{background:linear-gradient(135deg,#1e293b 0%,#0f172a 100%);color:#94a3b8;border-color:rgba(255,255,255,.1)}
+    .filter-btn:hover,.filter-btn.active{background:linear-gradient(135deg,#3b82f6 0%,#8b5cf6 100%);color:#fff;transform:translateY(-3px) scale(1.05);box-shadow:0 12px 30px rgba(59,130,246,.35)}
+    
+    /* ============ SCROLLBAR ============ */
+    ::-webkit-scrollbar{width:10px}
     ::-webkit-scrollbar-track{background:transparent}
-    ::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:9999px}
-    .dark ::-webkit-scrollbar-thumb{background:#475569}
+    ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#3b82f6,#8b5cf6);border-radius:50px;transition:background .3s}
+    ::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#2563eb,#7c3aed)}
+    
+    /* ============ MOBILE MENU ============ */
     #mobile-menu{display:none}
-    #mobile-menu.open{display:block}
-    #back-top{position:fixed;bottom:24px;right:24px;z-index:100;opacity:0;pointer-events:none;transition:opacity .3s}
+    #mobile-menu.open{display:block;animation:fadeInUp .3s ease-out}
+    
+    /* ============ BACK TO TOP ============ */
+    #back-top{position:fixed;bottom:24px;right:24px;z-index:100;opacity:0;pointer-events:none;transition:all .3s cubic-bezier(.4,0,.2,1)}
     #back-top.visible{opacity:1;pointer-events:auto}
-    .chip{background:#eff6ff;color:#1d4ed8;padding:4px 10px;border-radius:9999px;font-size:12px;font-weight:500}
-    .dark .chip{background:#1e3a5f;color:#93c5fd}
-    .grad-text{background:linear-gradient(135deg,#3b82f6,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .filter-btn{background:#f1f5f9;color:#64748b}
-    .dark .filter-btn{background:#1e293b;color:#94a3b8}
-    .filter-btn.active,.filter-btn:hover{background:#3b82f6;color:#fff}
+    #back-top:hover{transform:scale(1.15) translateY(-4px)}
   </style>
 </head>
 <body class="bg-gray-50 dark:bg-slate-900 text-gray-800 dark:text-gray-100 transition-colors duration-300">
 
-<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="w-10 h-10 rounded-full bg-blue-600 text-white shadow-lg flex items-center justify-center hover:bg-blue-700 transition-colors" aria-label="Back to top">
-  <i class="fas fa-arrow-up text-sm"></i>
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg shadow-blue-400/50 flex items-center justify-center hover:shadow-xl hover:shadow-blue-500/70 transition-all group" aria-label="Back to top">
+  <i class="fas fa-arrow-up text-sm group-hover:scale-110 transition-transform"></i>
 </button>
 
 <!-- NAVBAR -->
 <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all">
   <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="#hero" class="font-bold text-lg text-blue-600 dark:text-blue-400">Waseem<span class="text-gray-800 dark:text-white">.</span></a>
+    <a href="#hero" class="font-bold text-lg bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:scale-105 transition-transform">Waseem<span class="text-gray-800 dark:text-white">.</span></a>
     <div class="hidden md:flex items-center gap-8">
       <a href="#about" class="nav-link text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-colors" data-en="About" data-ar="عني">About</a>
       <a href="#experience" class="nav-link text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-colors" data-en="Experience" data-ar="الخبرة">Experience</a>
@@ -75,28 +114,28 @@
       <a href="#contact" class="nav-link text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 transition-colors" data-en="Contact" data-ar="التواصل">Contact</a>
     </div>
     <div class="flex items-center gap-3">
-      <div class="hidden md:flex gap-1 bg-gray-100 dark:bg-slate-800 rounded-lg p-1">
-        <button onclick="setLang('en')" id="btn-en" class="px-3 py-1 rounded-md text-xs font-medium bg-blue-600 text-white">EN</button>
-        <button onclick="setLang('ar')" id="btn-ar" class="px-3 py-1 rounded-md text-xs font-medium text-gray-500 dark:text-gray-400">AR</button>
+      <div class="hidden md:flex gap-1 bg-gradient-to-r from-gray-100 to-gray-50 dark:from-slate-800 dark:to-slate-700 rounded-full p-1 border border-gray-200/50 dark:border-slate-700/50">
+        <button onclick="setLang('en')" id="btn-en" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-gradient-to-r from-blue-500 to-blue-600 text-white transition-all hover:shadow-lg">EN</button>
+        <button onclick="setLang('ar')" id="btn-ar" class="px-3 py-1.5 rounded-full text-xs font-semibold text-gray-500 dark:text-gray-400 transition-all hover:text-gray-700">AR</button>
       </div>
-      <button onclick="toggleDark()" class="w-9 h-9 rounded-lg bg-gray-100 dark:bg-slate-800 flex items-center justify-center hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle dark mode">
+      <button onclick="toggleDark()" class="w-10 h-10 rounded-full bg-gradient-to-br from-gray-100 to-gray-50 dark:from-slate-800 dark:to-slate-700 flex items-center justify-center hover:shadow-lg transition-all" aria-label="Toggle dark mode">
         <i id="dark-icon" class="fas fa-moon text-gray-600 dark:text-gray-300 text-sm"></i>
       </button>
-      <button onclick="toggleMobile()" class="md:hidden w-9 h-9 rounded-lg bg-gray-100 dark:bg-slate-800 flex items-center justify-center" aria-label="Menu">
+      <button onclick="toggleMobile()" class="md:hidden w-10 h-10 rounded-full bg-gray-100 dark:bg-slate-800 flex items-center justify-center hover:bg-gray-200" aria-label="Menu">
         <i class="fas fa-bars text-gray-600 dark:text-gray-300 text-sm"></i>
       </button>
     </div>
   </div>
-  <div id="mobile-menu" class="md:hidden bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-slate-800">
+  <div id="mobile-menu" class="md:hidden bg-white/95 dark:bg-slate-900/95 backdrop-filter backdrop-blur-lg border-t border-gray-100 dark:border-slate-700">
     <div class="px-6 py-4 flex flex-col gap-4">
-      <a href="#about" onclick="toggleMobile()" class="text-sm text-gray-600 dark:text-gray-300" data-en="About" data-ar="عني">About</a>
-      <a href="#experience" onclick="toggleMobile()" class="text-sm text-gray-600 dark:text-gray-300" data-en="Experience" data-ar="الخبرة">Experience</a>
-      <a href="#projects" onclick="toggleMobile()" class="text-sm text-gray-600 dark:text-gray-300" data-en="Projects" data-ar="المشاريع">Projects</a>
-      <a href="#skills" onclick="toggleMobile()" class="text-sm text-gray-600 dark:text-gray-300" data-en="Skills" data-ar="المهارات">Skills</a>
-      <a href="#contact" onclick="toggleMobile()" class="text-sm text-gray-600 dark:text-gray-300" data-en="Contact" data-ar="التواصل">Contact</a>
-      <div class="flex gap-2">
-        <button onclick="setLang('en')" class="px-3 py-1 rounded-md text-xs font-medium bg-blue-600 text-white">EN</button>
-        <button onclick="setLang('ar')" class="px-3 py-1 rounded-md text-xs font-medium bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-gray-300">AR</button>
+      <a href="#about" onclick="toggleMobile()" class="text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 transition" data-en="About" data-ar="عني">About</a>
+      <a href="#experience" onclick="toggleMobile()" class="text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 transition" data-en="Experience" data-ar="الخبرة">Experience</a>
+      <a href="#projects" onclick="toggleMobile()" class="text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 transition" data-en="Projects" data-ar="المشاريع">Projects</a>
+      <a href="#skills" onclick="toggleMobile()" class="text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 transition" data-en="Skills" data-ar="المهارات">Skills</a>
+      <a href="#contact" onclick="toggleMobile()" class="text-sm text-gray-600 dark:text-gray-300 hover:text-blue-600 transition" data-en="Contact" data-ar="التواصل">Contact</a>
+      <div class="flex gap-2 pt-2">
+        <button onclick="setLang('en')" class="px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-blue-500 to-blue-600 text-white">EN</button>
+        <button onclick="setLang('ar')" class="px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-gray-300">AR</button>
       </div>
     </div>
   </div>
@@ -108,44 +147,45 @@
   <div class="hero-blob w-72 h-72 bg-purple-400" style="bottom:-40px;left:-40px;animation-delay:2s"></div>
   <div class="hero-blob w-48 h-48 bg-green-400" style="top:40%;left:30%;animation-delay:4s"></div>
   <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
-   <div class="floating mb-8 inline-block">
-  <img src="/images/profile.jpg" alt="Waseem Al-Buqai" class="w-28 h-28 rounded-full mx-auto border-4 border-white dark:border-slate-700 shadow-xl object-cover">
-</div>
-    <div class="section-label mb-3" data-en="Hello, World 👋" data-ar="مرحبًا بالعالم 👋">Hello, World 👋</div>
-    <h1 class="text-5xl md:text-6xl font-bold mb-4 text-gray-900 dark:text-white">
+    <div class="floating mb-8 inline-block">
+      <img src="/images/profile.jpg" alt="Waseem Al-Buqai" class="w-32 h-32 rounded-full mx-auto border-4 border-white dark:border-slate-700 shadow-2xl object-cover ring-4 ring-blue-100 dark:ring-blue-900/30 hover:scale-110 transition-transform duration-300">
+    </div>
+    <div class="section-label mb-3" data-en="Hello 👋" data-ar="مرحبًا 👋">Hello, World 👋</div>
+    <h1 class="text-6xl md:text-7xl font-black mb-6 text-gray-900 dark:text-white leading-tight">
       <span data-en="Waseem Al-Buqai" data-ar="وسيم البقاعي">Waseem Al-Buqai</span>
     </h1>
-    <p class="text-xl md:text-2xl font-medium mb-4">
+    <p class="text-xl md:text-2xl font-bold mb-6">
       <span class="grad-text" data-en="Back-End Developer · PHP & Laravel" data-ar="مطور Back-End · PHP و Laravel">Back-End Developer · PHP &amp; Laravel</span>
     </p>
-    <p class="text-gray-500 dark:text-gray-400 max-w-xl mx-auto mb-10 leading-relaxed" data-en="Building scalable backend systems, RESTful APIs, and production-ready web applications with clean architecture and SOLID principles." data-ar="أبني أنظمة Backend قابلة للتوسع وRESTful APIs وتطبيقات ويب جاهزة للإنتاج مع Clean Architecture ومبادئ SOLID.">
-      Building scalable backend systems, RESTful APIs, and production-ready web applications with clean architecture and SOLID principles.
+    <p class="text-gray-500 dark:text-gray-400 max-w-xl mx-auto mb-10 leading-relaxed" data-en="Designing scalable RESTful APIs, modular monolith systems, and production-ready Laravel applications — with clean architecture and SOLID principles at the core." data-ar="أصمم RESTful APIs قابلة للتوسع وأنظمة Modular Monolith وتطبيقات Laravel جاهزة للإنتاج — مع Clean Architecture ومبادئ SOLID في الأساس.">
+      Designing scalable RESTful APIs, modular monolith systems, and production-ready Laravel applications — with clean architecture and SOLID principles at the core.
     </p>
     <div class="flex flex-wrap justify-center gap-6 mb-10">
       <div class="text-center">
-        <div class="text-3xl font-bold text-blue-600 dark:text-blue-400">5+</div>
-        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1" data-en="Projects" data-ar="مشروع">Projects</div>
+        <div class="text-4xl font-black bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">5+</div>
+        <div class="text-xs text-gray-600 dark:text-gray-400 mt-2 font-medium" data-en="Projects" data-ar="مشروع">Projects</div>
       </div>
-      <div class="w-px h-12 bg-gray-200 dark:bg-slate-700 self-center"></div>
+      <div class="w-px h-16 bg-gradient-to-b from-gray-300 via-gray-200 to-transparent dark:from-slate-600 dark:via-slate-700"></div>
       <div class="text-center">
-        <div class="text-3xl font-bold text-purple-600 dark:text-purple-400">50+</div>
-        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1" data-en="REST APIs Built" data-ar="REST API مبنية">REST APIs Built</div>
+        <div class="text-4xl font-black bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent">50+</div>
+        <div class="text-xs text-gray-600 dark:text-gray-400 mt-2 font-medium" data-en="REST APIs Built" data-ar="REST API مبنية">REST APIs Built</div>
       </div>
-      <div class="w-px h-12 bg-gray-200 dark:bg-slate-700 self-center"></div>
+      <div class="w-px h-16 bg-gradient-to-b from-gray-300 via-gray-200 to-transparent dark:from-slate-600 dark:via-slate-700"></div>
       <div class="text-center">
-        <div class="text-3xl font-bold text-green-600 dark:text-green-400">1</div>
-        <div class="text-xs text-gray-500 dark:text-gray-400 mt-1" data-en="Internship" data-ar="تدريب عملي">Internship</div>
+        <div class="text-4xl font-black bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent">110</div>
+        <div class="text-xs text-gray-600 dark:text-gray-400 mt-2 font-medium" data-en="Internship Hrs" data-ar="ساعة تدريب">Internship Hrs</div>
       </div>
     </div>
     <div class="flex flex-wrap gap-4 justify-center">
-      <a href="#projects" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-colors flex items-center gap-2 shadow-lg shadow-blue-200 dark:shadow-blue-900">
-        <i class="fas fa-folder-open text-sm"></i><span data-en="View Projects" data-ar="المشاريع">View Projects</span>
+      <a href="#projects" class="group relative px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl font-medium transition-all shadow-lg shadow-blue-200 dark:shadow-blue-900/50 hover:shadow-xl hover:scale-105 flex items-center gap-2 overflow-hidden">
+        <span class="relative z-10"><i class="fas fa-folder-open text-sm"></i> <span data-en="View Projects" data-ar="المشاريع">View Projects</span></span>
+        <div class="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </a>
-      <a href="https://wasem8.github.io/portfolio/cv/Waseem_Al-Buqai_CV.pdf" download class="px-6 py-3 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-200 rounded-xl font-medium border border-gray-200 dark:border-slate-700 transition-colors flex items-center gap-2">
-        <i class="fas fa-download text-sm text-blue-600"></i><span data-en="Download CV" data-ar="تحميل السيرة الذاتية">Download CV</span>
+      <a href="https://wasem8.github.io/portfolio/cv/Waseem_Al-Buqai_CV.pdf" download class="px-8 py-3 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-200 rounded-xl font-medium border-2 border-gray-200 dark:border-slate-700 transition-all hover:shadow-lg hover:scale-105 flex items-center gap-2">
+        <i class="fas fa-download text-blue-600 text-sm"></i><span data-en="Download CV" data-ar="تحميل السيرة الذاتية">Download CV</span>
       </a>
-      <a href="#contact" class="px-6 py-3 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-200 rounded-xl font-medium border border-gray-200 dark:border-slate-700 transition-colors flex items-center gap-2">
-        <i class="fas fa-envelope text-sm text-blue-600"></i><span data-en="Contact Me" data-ar="تواصل معي">Contact Me</span>
+      <a href="#contact" class="px-8 py-3 bg-white dark:bg-slate-800 hover:bg-gray-50 dark:hover:bg-slate-700 text-gray-700 dark:text-gray-200 rounded-xl font-medium border-2 border-gray-200 dark:border-slate-700 transition-all hover:shadow-lg hover:scale-105 flex items-center gap-2">
+        <i class="fas fa-envelope text-blue-600 text-sm"></i><span data-en="Contact Me" data-ar="تواصل معي">Contact Me</span>
       </a>
     </div>
   </div>
@@ -163,7 +203,7 @@
         <div class="section-label" data-en="Who I Am" data-ar="من أنا">Who I Am</div>
         <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white" data-en="About Me" data-ar="عني">About Me</h2>
         <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4" data-en="I'm a final-year Software Engineering student at Damascus University and a Back-End Developer with hands-on internship experience building production-grade Laravel applications." data-ar="أنا طالب في السنة الأخيرة من هندسة البرمجيات في جامعة دمشق، ومطور Back-End لدي خبرة عملية في بناء تطبيقات Laravel للإنتاج.">I'm a final-year Software Engineering student at Damascus University and a Back-End Developer with hands-on internship experience building production-grade Laravel applications.</p>
-        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6" data-en="I focus on clean architecture, SOLID principles, RESTful API design, and building systems that are secure, maintainable, and ready to scale." data-ar="أركز على Clean Architecture ومبادئ SOLID وتصميم RESTful API، وبناء أنظمة آمنة وقابلة للصيانة والتوسع.">I focus on clean architecture, SOLID principles, RESTful API design, and building systems that are secure, maintainable, and ready to scale.</p>
+        <p class="text-gray-600 dark:text-gray-400 leading-relaxed mb-6" data-en="Proficient in designing RESTful APIs, modular monolith systems, and production-ready Laravel applications following SOLID principles and Clean Architecture — with a focus on secure, maintainable, and scalable solutions." data-ar="أتقن تصميم RESTful APIs وأنظمة Modular Monolith وتطبيقات Laravel الجاهزة للإنتاج وفق مبادئ SOLID وClean Architecture — مع التركيز على حلول آمنة وقابلة للصيانة والتوسع.">Proficient in designing RESTful APIs, modular monolith systems, and production-ready Laravel applications following SOLID principles and Clean Architecture — with a focus on secure, maintainable, and scalable solutions.</p>
         <div class="flex flex-wrap gap-2">
           <span class="chip"><i class="fas fa-map-marker-alt text-xs"></i> Damascus, Syria</span>
           <span class="chip"><i class="fas fa-graduation-cap text-xs"></i> Final Year</span>
@@ -212,19 +252,24 @@
               <h3 class="text-lg font-bold text-gray-900 dark:text-white" data-en="Back-End Developer Intern" data-ar="متدرب مطور Back-End">Back-End Developer Intern</h3>
               <p class="text-blue-600 dark:text-blue-400 font-medium">Widespheres · <span class="text-gray-500 dark:text-gray-400 font-normal text-sm" data-en="Damascus, Syria" data-ar="دمشق، سوريا">Damascus, Syria</span></p>
             </div>
-            <span class="badge bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">2026 – Present</span>
+            <span class="badge bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">2026</span>
           </div>
-          <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed" data-en="Led the full back-end development of the Syrian League Platform — a professional football tracking application (Web + Mobile) covering matches, standings, players, transfers, and personalized notifications." data-ar="قدت تطوير الجانب الخلفي الكامل لمنصة Syrian League — تطبيق احترافي لتتبع كرة القدم (ويب + موبايل) يغطي المباريات والترتيب واللاعبين والانتقالات والإشعارات.">Led the full back-end development of the Syrian League Platform — a professional football tracking application (Web + Mobile) covering matches, standings, players, transfers, and personalized notifications.</p>
+          <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed" data-en="Contributed to the full back-end development of the Syrian League Platform — a professional football tracking application (Web + Mobile) covering matches, standings, players, transfers, and personalized notifications." data-ar="قدت تطوير الجانب الخلفي الكامل لمنصة Syrian League — تطبيق احترافي لتتبع كرة القدم (ويب + موبايل) يغطي المباريات والترتيب واللاعبين والانتقالات والإشعارات.">Contributed to the full back-end development of the Syrian League Platform — a professional football tracking application (Web + Mobile) covering matches, standings, players, transfers, and personalized notifications.</p>
           <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
-            <li class="flex gap-2"><span class="text-blue-500 mt-0.5">▸</span><span data-en="JWT-authenticated RESTful API (V1) with Guest, Fan, Editor, and Admin roles" data-ar="RESTful API مؤمنة بـ JWT بـ 4 أدوار: ضيف ومشجع ومحرر ومشرف">JWT-authenticated RESTful API (V1) with 4 roles: Guest, Fan, Editor, Admin</span></li>
-            <li class="flex gap-2"><span class="text-blue-500 mt-0.5">▸</span><span data-en="Social Login (Google/Apple) via Laravel Socialite with auto-profile creation" data-ar="تسجيل دخول اجتماعي (Google/Apple) عبر Laravel Socialite مع إنشاء ملف تعريف تلقائي">Social Login (Google/Apple) via Laravel Socialite with auto-profile creation</span></li>
-            <li class="flex gap-2"><span class="text-blue-500 mt-0.5">▸</span><span data-en="Automated Standings Engine (MatchObserver) recalculating positions, goal diff, and trend after each match" data-ar="محرك ترتيب تلقائي (MatchObserver) يعيد حساب المراكز وفارق الأهداف والاتجاه بعد كل مباراة">Automated Standings Engine (MatchObserver) — recalculates positions, goal diff, and trend after each match</span></li>
-            <li class="flex gap-2"><span class="text-blue-500 mt-0.5">▸</span><span data-en="Player Season Stats via raw SQL aggregation (SUM/AVG/COUNT) for goals, assists, cards, and saves" data-ar="إحصاءات لاعبين بـ SQL خام (SUM/AVG/COUNT) للأهداف والتمريرات والبطاقات والتصديات">Player Season Stats via raw SQL aggregation (SUM/AVG/COUNT)</span></li>
-            <li class="flex gap-2"><span class="text-blue-500 mt-0.5">▸</span><span data-en="Transfer Logic Engine (TransferObserver) supporting internal transfers, loans, and external moves" data-ar="محرك الانتقالات (TransferObserver) يدعم الانتقالات الداخلية والإعارات والانتقالات الخارجية">Transfer Logic Engine (TransferObserver) — internal, loan, and external moves</span></li>
-            <li class="flex gap-2"><span class="text-blue-500 mt-0.5">▸</span><span data-en="Clean Architecture with Service/Repository patterns across 20+ database tables" data-ar="Clean Architecture مع نمط Service/Repository عبر أكثر من 20 جدول">Clean Architecture with Service/Repository patterns across 20+ database tables</span></li>
+            <li class="flex gap-2"><span class="text-blue-500 mt-0.5">▸</span><span data-en="Designed a versioned RESTful API with JWT authentication, serving Web and Mobile clients with role-based access control and Social Login (Google/Apple)." data-ar="صممت RESTful API موثوقة بـ JWT تخدم عملاء الويب والموبايل مع RBAC وتسجيل دخول اجتماعي (Google/Apple).">Designed a versioned RESTful API with JWT authentication, serving Web and Mobile clients with RBAC and Social Login (Google/Apple).</span></li>
+            <li class="flex gap-2"><span class="text-blue-500 mt-0.5">▸</span><span data-en="Built a season-aware data architecture enabling multi-season support and structured a clean, versioned API Resource layer." data-ar="بنيت معمارية بيانات تدعم مواسم متعددة مع طبقة API Resource نظيفة وموثوقة.">Built a season-aware data architecture enabling multi-season support and a clean, versioned API Resource layer.</span></li>
+            <li class="flex gap-2"><span class="text-blue-500 mt-0.5">▸</span><span data-en="Developed a real-time Home Dashboard endpoint aggregating standings, transfers, and live match status in a single optimized API call." data-ar="طورت نقطة Home Dashboard تجمع الترتيب والانتقالات وحالة المباراة في استدعاء API واحد محسّن.">Developed a real-time Home Dashboard aggregating standings, transfers, and live status in a single optimized API call.</span></li>
+            <li class="flex gap-2"><span class="text-blue-500 mt-0.5">▸</span><span data-en="Engineered automated engines (Standings, Player Stats, Transfers) using Eloquent Observers and raw SQL to maintain live data tracking." data-ar="طورت محركات تلقائية (Standings وPlayer Stats وTransfers) باستخدام Eloquent Observers وSQL خام.">Engineered automated engines (Standings, Player Stats, Transfers) using Eloquent Observers and raw SQL.</span></li>
+            <li class="flex gap-2"><span class="text-blue-500 mt-0.5">▸</span><span data-en="Built and maintained internal admin panels using Filament, streamlining content and league management workflows." data-ar="بنيت وصنت لوحات إدارة داخلية باستخدام Filament لتبسيط إدارة المحتوى والدوري.">Built and maintained internal admin panels using Filament, streamlining content and league management.</span></li>
+            <li class="flex gap-2"><span class="text-blue-500 mt-0.5">▸</span><span data-en="Applied Clean Architecture with Service/Repository patterns across 20+ database tables." data-ar="طبقت Clean Architecture مع نمط Service/Repository عبر أكثر من 20 جدول.">Applied Clean Architecture with Service/Repository patterns across 20+ database tables.</span></li>
           </ul>
+          <!-- Certificate link -->
+          <a href="https://widespheres.com/public/certificates/CERT-2026-XZOCOAI0" target="_blank" class="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 rounded-xl text-sm font-medium hover:bg-green-100 dark:hover:bg-green-900/40 transition-colors border border-green-200 dark:border-green-800">
+            <i class="fas fa-certificate text-xs"></i>
+            <span data-en="Official Certificate · 110 hrs" data-ar="شهادة رسمية · 110 ساعة">Official Certificate · 110 hrs</span>
+          </a>
           <div class="flex flex-wrap gap-2 mt-4">
-            <span class="chip">Laravel</span><span class="chip">PHP 8</span><span class="chip">JWT</span><span class="chip">Eloquent Observers</span><span class="chip">MySQL</span><span class="chip">Socialite</span>
+            <span class="chip">Laravel</span><span class="chip">PHP 8</span><span class="chip">JWT</span><span class="chip">Eloquent Observers</span><span class="chip">MySQL</span><span class="chip">Socialite</span><span class="chip">Filament</span>
           </div>
         </div>
       </div>
@@ -243,6 +288,7 @@
       <button onclick="filterProjects('all',event)" class="filter-btn active px-4 py-2 rounded-xl text-sm font-medium transition-all" data-en="All" data-ar="الكل">All</button>
       <button onclick="filterProjects('laravel',event)" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium transition-all">Laravel</button>
       <button onclick="filterProjects('api',event)" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium transition-all">API</button>
+      <button onclick="filterProjects('typescript',event)" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium transition-all">TypeScript</button>
       <button onclick="filterProjects('java',event)" class="filter-btn px-4 py-2 rounded-xl text-sm font-medium transition-all" data-en="Design Patterns" data-ar="Design Patterns">Design Patterns</button>
     </div>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
@@ -261,9 +307,9 @@
         <div class="p-6">
           <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-1">MMS Backend</h3>
           <p class="text-blue-600 dark:text-blue-400 text-sm font-medium mb-3" data-en="Mosque Management System" data-ar="نظام إدارة المساجد">Mosque Management System</p>
-          <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4" data-en="Modular Laravel 13 backend for managing mosques and their services. Features multi-language support (AR/EN), JWT auth, Swagger docs, and Clean Architecture with Modular Monolith structure." data-ar="Backend موديولاري بـ Laravel 13 لإدارة المساجد وخدماتها. يتميز بدعم متعدد اللغات (AR/EN) ومصادقة JWT وتوثيق Swagger وClean Architecture.">Modular Laravel 13 backend for managing mosques and their services. Features multi-language (AR/EN), JWT auth, Swagger docs, and Modular Monolith structure.</p>
+          <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4" data-en="Modular Laravel 13 backend managing mosque operations, Quranic education (Halaqat), and community services — with offline-first sync, serverless PDF generation, and Supabase cloud storage." data-ar="Backend موديولاري بـ Laravel 13 يدير عمليات المساجد والتعليم القرآني (الحلقات) والخدمات المجتمعية — مع مزامنة offline-first وتوليد PDF بدون خادم وتخزين سحابي عبر Supabase.">Modular Laravel 13 backend managing mosque operations, Quranic education (Halaqat), and community services — with offline-first sync, serverless PDF generation, and Supabase cloud storage.</p>
           <div class="flex flex-wrap gap-2 mb-4">
-            <span class="chip">Laravel 13</span><span class="chip">PHP 8.4</span><span class="chip">Modular</span><span class="chip">JWT</span><span class="chip">Swagger</span><span class="chip">Pest</span>
+            <span class="chip">Laravel 13</span><span class="chip">PHP 8.4</span><span class="chip">Modular</span><span class="chip">JWT</span><span class="chip">Swagger</span><span class="chip">Pest</span><span class="chip">Supabase</span>
           </div>
           <div class="flex gap-3">
             <a href="https://github.com/Wasem8/mms-backend" target="_blank" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors"><i class="fab fa-github"></i> GitHub</a>
@@ -283,11 +329,33 @@
         <div class="p-6">
           <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1" data-en="Syrian League Platform" data-ar="منصة الدوري السوري">Syrian League Platform</h3>
           <p class="text-blue-600 dark:text-blue-400 text-xs mb-3">Widespheres · 2026</p>
-          <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4" data-en="Football tracking platform (Web + Mobile) with real-time standings, player stats, transfers, and 4 user roles with automated Observer-based engines." data-ar="منصة تتبع كرة القدم بمحركات Observer تلقائية وإحصائيات لاعبين وانتقالات وإشعارات فورية.">Football tracking platform with real-time standings, player stats, transfers, and automated Observer engines.</p>
+          <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4" data-en="Football tracking platform (Web + Mobile) with real-time standings, player stats, transfers, and automated Observer-based engines." data-ar="منصة تتبع كرة القدم بمحركات Observer تلقائية وإحصائيات لاعبين وانتقالات وإشعارات فورية.">Football tracking platform with real-time standings, player stats, transfers, and automated Observer engines.</p>
           <div class="flex flex-wrap gap-2 mb-4">
-            <span class="chip">Laravel</span><span class="chip">JWT</span><span class="chip">Observers</span>
+            <span class="chip">Laravel</span><span class="chip">JWT</span><span class="chip">Observers</span><span class="chip">Filament</span>
           </div>
           <button onclick="openModal('modal-league')" class="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:underline"><i class="fas fa-info-circle"></i><span data-en="Details" data-ar="التفاصيل">Details</span></button>
+        </div>
+      </div>
+
+      <!-- Distributed Systems -->
+      <div class="reveal project-item card bg-white dark:bg-slate-800 rounded-2xl border border-gray-100 dark:border-slate-700 overflow-hidden" data-tags="typescript api">
+        <div class="relative flex flex-col items-center justify-center text-white" style="height:180px;background:linear-gradient(135deg,#0891b2 0%,#7c3aed 100%)">
+          <i class="fas fa-network-wired text-5xl mb-3 opacity-80"></i>
+          <span class="absolute top-4 right-4 badge bg-white/20 text-white border border-white/30 text-xs">
+            <i class="fas fa-globe text-xs"></i> Live
+          </span>
+        </div>
+        <div class="p-6">
+          <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1" data-en="Distributed Systems Simulator" data-ar="محاكي الأنظمة الموزعة">Distributed Systems Simulator</h3>
+          <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4" data-en="Saga Orchestrator with LIFO compensation & retry back-off, plus Load Balancer supporting 12 algorithms with real-time KPI metrics." data-ar="Saga Orchestrator مع تعويض LIFO وretry back-off، ومحاكي Load Balancer يدعم 12 خوارزمية مع مقاييس KPI الحية.">Saga Orchestrator with LIFO compensation &amp; retry back-off, plus Load Balancer supporting 12 algorithms with real-time KPI metrics.</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="chip">TypeScript</span><span class="chip">Next.js</span><span class="chip">Node.js</span>
+          </div>
+          <div class="flex gap-3">
+            <a href="https://github.com/Wasem8/distributed-saga-orchestrator" target="_blank" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://distributed-saga-orchestrator.vercel.app" target="_blank" class="flex items-center gap-2 text-sm text-green-600 dark:text-green-400 hover:underline"><i class="fas fa-external-link-alt text-xs"></i> Live</a>
+            <button onclick="openModal('modal-distributed')" class="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:underline"><i class="fas fa-info-circle"></i><span data-en="Details" data-ar="التفاصيل">Details</span></button>
+          </div>
         </div>
       </div>
 
@@ -298,9 +366,9 @@
         </div>
         <div class="p-6">
           <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-3" data-en="Complaint Management System" data-ar="نظام إدارة الشكاوى">Complaint Management System</h3>
-          <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4" data-en="Laravel 12 backend with RBAC, queue jobs, Firebase notifications, and full audit logging." data-ar="Backend بـ Laravel 12 مع RBAC وQueue Jobs وإشعارات Firebase وسجلات مراجعة كاملة.">Laravel 12 backend with RBAC, queue jobs, Firebase notifications, and full audit logging.</p>
+          <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4" data-en="Laravel backend with RBAC, queue jobs, Firebase notifications, and full audit logging." data-ar="Backend بـ Laravel مع RBAC وQueue Jobs وإشعارات Firebase وسجلات مراجعة كاملة.">Laravel backend with RBAC, queue jobs, Firebase notifications, and full audit logging.</p>
           <div class="flex flex-wrap gap-2 mb-4">
-            <span class="chip">Laravel 12</span><span class="chip">Firebase</span><span class="chip">Queues</span>
+            <span class="chip">Laravel 11</span><span class="chip">Firebase</span><span class="chip">Queues</span>
           </div>
           <div class="flex gap-3">
             <a href="https://github.com/Wasem8/complaints-system" target="_blank" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors"><i class="fab fa-github"></i> GitHub</a>
@@ -319,13 +387,13 @@
         </div>
         <div class="p-6">
           <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-1" data-en="Beauty Center System" data-ar="نظام مركز التجميل">Beauty Center System</h3>
-          <p class="text-gray-500 dark:text-gray-400 text-xs mb-3">Vera Daraa · 2025</p>
+          <p class="text-gray-500 dark:text-gray-400 text-xs mb-3">Vera Daraa · 2024</p>
           <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4" data-en="Real-world system for a beauty center in Daraa, Syria. Manages bookings, invoices, staff, and automated client notifications." data-ar="نظام حقيقي لمركز تجميل في درعا، سوريا. يدير الحجوزات والفواتير وجداول الموظفين وإشعارات العملاء.">Real-world system for a beauty center in Daraa. Manages bookings, invoices, staff, and automated notifications.</p>
           <div class="flex flex-wrap gap-2 mb-4">
             <span class="chip">Laravel</span><span class="chip">Firebase</span><span class="chip">Queues</span>
           </div>
           <div class="flex gap-3">
-            <a href="https://github.com/Wasem8/Vera_Daraa" target="_blank" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://github.com/Waseem8/Vera_Daraa" target="_blank" class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 transition-colors"><i class="fab fa-github"></i> GitHub</a>
             <button onclick="openModal('modal-vera')" class="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:underline"><i class="fas fa-info-circle"></i><span data-en="Details" data-ar="التفاصيل">Details</span></button>
           </div>
         </div>
@@ -386,11 +454,11 @@
       <div>
         <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4" data-en="Technologies & Tools" data-ar="التقنيات والأدوات">Technologies & Tools</p>
         <div class="flex flex-wrap gap-2 mb-6">
-          <span class="chip">PHP 8+</span><span class="chip">Laravel 8–13</span><span class="chip">MySQL</span><span class="chip">JWT Auth</span><span class="chip">Firebase FCM</span><span class="chip">Swagger</span><span class="chip">Eloquent ORM</span><span class="chip">Queue Jobs</span><span class="chip">Observers</span><span class="chip">Socialite</span><span class="chip">Filament</span><span class="chip">Pest</span><span class="chip">PHPUnit</span><span class="chip">Git / GitHub</span><span class="chip">Docker</span><span class="chip">Postman</span><span class="chip">Artisan CLI</span><span class="chip">nwidart/modules</span><span class="chip">l5-swagger</span><span class="chip">TailwindCSS</span>
+          <span class="chip">PHP 8+</span><span class="chip">Laravel 8–13</span><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">JWT Auth</span><span class="chip">Firebase FCM</span><span class="chip">Swagger</span><span class="chip">Eloquent ORM</span><span class="chip">Queue Jobs</span><span class="chip">Observers</span><span class="chip">Socialite</span><span class="chip">Filament</span><span class="chip">Pest</span><span class="chip">PHPUnit</span><span class="chip">Git / GitHub</span><span class="chip">Docker</span><span class="chip">Postman</span><span class="chip">Artisan CLI</span><span class="chip">nwidart/modules</span><span class="chip">l5-swagger</span><span class="chip">Supabase</span><span class="chip">TailwindCSS</span>
         </div>
         <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4" data-en="Architecture Patterns" data-ar="أنماط المعمارية">Architecture Patterns</p>
         <div class="flex flex-wrap gap-2">
-          <span class="chip">Clean Architecture</span><span class="chip">Service/Repository</span><span class="chip">Modular Monolith</span><span class="chip">MVC</span><span class="chip">SOLID</span><span class="chip">Design Patterns</span><span class="chip">OOP</span>
+          <span class="chip">Clean Architecture</span><span class="chip">Service/Repository</span><span class="chip">Modular Monolith</span><span class="chip">MVC</span><span class="chip">SOLID</span><span class="chip">Design Patterns</span><span class="chip">OOP</span><span class="chip">Distributed Systems</span>
         </div>
       </div>
     </div>
@@ -457,8 +525,9 @@
   <p class="text-gray-400 text-sm" data-en="© 2026 Waseem Al-Buqai · Built with ❤️" data-ar="© 2026 وسيم البقاعي · بُني بـ ❤️">© 2026 Waseem Al-Buqai · Built with ❤️</p>
 </footer>
 
-<!-- MODALS -->
-<!-- MMS -->
+<!-- ==================== MODALS ==================== -->
+
+<!-- MMS — UPDATED with new bullet points -->
 <div id="modal-mms" class="modal-overlay" onclick="if(event.target===this)closeModal('modal-mms')">
   <div class="modal-box">
     <div class="flex flex-col md:flex-row">
@@ -468,19 +537,27 @@
       </div>
       <div class="md:w-3/5 p-6 md:p-8">
         <div class="flex items-start justify-between mb-4">
-          <div><h3 class="text-xl font-bold text-gray-900 dark:text-white">MMS Backend</h3><span class="badge bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 mt-1"><i class="fas fa-circle text-green-500 text-xs animate-pulse"></i><span data-en="In Active Development" data-ar="قيد التطوير">In Active Development</span></span></div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white">MMS Backend</h3>
+            <span class="badge bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 mt-1">
+              <i class="fas fa-circle text-green-500 text-xs animate-pulse"></i>
+              <span data-en="In Active Development" data-ar="قيد التطوير">In Active Development</span>
+            </span>
+          </div>
           <button onclick="closeModal('modal-mms')" class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-slate-700 flex items-center justify-center text-gray-500 hover:text-red-500 transition-colors"><i class="fas fa-times text-sm"></i></button>
         </div>
-        <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4" data-en="A scalable Modular Monolith backend built with Laravel 13 and PHP 8.4, designed to manage mosques and their affiliated services." data-ar="Backend موديولاري قابل للتوسع بـ Laravel 13 وPHP 8.4 لإدارة المساجد وخدماتها.">Scalable Modular Monolith backend built with Laravel 13 and PHP 8.4, designed to manage mosques and their services.</p>
+        <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4" data-en="Modular Laravel 13 backend managing mosque operations, Quranic education (Halaqat), and community services across 10 isolated business domains." data-ar="Backend موديولاري بـ Laravel 13 يدير عمليات المساجد والتعليم القرآني (الحلقات) والخدمات المجتمعية عبر 10 نطاقات عمل معزولة.">Modular Laravel 13 backend managing mosque operations, Quranic education (Halaqat), and community services across 10 isolated business domains.</p>
         <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400 mb-5">
-          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Modular Monolith: User, Mosque, Education, Community, Invitation, Dashboard" data-ar="Modular Monolith: User, Mosque, Education, Community, Invitation, Dashboard">Modular Monolith: User, Mosque, Education, Community, Invitation, Dashboard</span></li>
-          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Swagger/OpenAPI docs pre-generated and committed to Git for serverless deployments" data-ar="توثيق Swagger مُولَّد مسبقاً وملتزم بـ Git للنشر بدون خادم">Swagger/OpenAPI pre-generated and committed to Git for serverless deployments</span></li>
-          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="JWT Authentication with role-based access control across all modules" data-ar="مصادقة JWT مع التحكم بالصلاحيات عبر جميع الوحدات">JWT Auth with role-based access control across all modules</span></li>
-          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Multi-language support (Arabic/English) via Laravel localization" data-ar="دعم متعدد اللغات (عربي/إنجليزي) عبر Laravel localization">Multi-language (AR/EN) via Laravel localization</span></li>
-          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Queue-based email delivery for reliability under load" data-ar="إرسال بريد إلكتروني عبر Queue لضمان الموثوقية تحت الضغط">Queue-based email delivery for reliability under load</span></li>
-          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="PHPUnit/Pest unit and feature tests throughout the codebase" data-ar="اختبارات وحدة وتكامل بـ PHPUnit/Pest في جميع أنحاء الكود">PHPUnit/Pest unit and feature tests throughout the codebase</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Architected a Modular Monolith system across 10 isolated business domains using nwidart/laravel-modules." data-ar="بنيت نظام Modular Monolith عبر 10 نطاقات عمل معزولة باستخدام nwidart/laravel-modules.">Architected a Modular Monolith system across 10 isolated business domains using nwidart/laravel-modules.</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Engineered an offline-first sync pipeline for the Quranic Education module, allowing teachers to manage student profiles, attendance, and evaluation matrices under low connectivity." data-ar="طورت خط مزامنة offline-first للتعليم القرآني، يتيح للمعلمين إدارة ملفات الطلاب والحضور ومصفوفات التقييم في ظل انخفاض الاتصال.">Engineered an offline-first sync pipeline for Quranic Education — managing student profiles, attendance, and evaluation matrices under low connectivity.</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Optimized serverless PDF report generation under strict memory constraints (&lt;250MB) on Vercel by decoupling heavy typography assets." data-ar="حسّنت توليد تقارير PDF بدون خادم تحت قيود صارمة للذاكرة (&lt;250MB) على Vercel بفصل أصول الخطوط الثقيلة.">Optimized serverless PDF report generation (&lt;250MB on Vercel) by decoupling heavy typography assets.</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Implemented a cloud-based storage pipeline using Supabase with pre-signed URLs for dynamic reports and isolated per-user caching." data-ar="نفّذت خط تخزين سحابي عبر Supabase مع URLs موقّعة مسبقاً للتقارير الديناميكية وكاش معزول لكل مستخدم.">Implemented Supabase cloud storage with pre-signed URLs for dynamic reports and isolated per-user caching.</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Secured a 5-role access hierarchy (Super Admin → Parent) using JWT, with module-level permissions and full Pest test coverage." data-ar="أمّنت هرمية وصول من 5 أدوار (Super Admin → ولي الأمر) بـ JWT مع صلاحيات على مستوى الوحدات وتغطية اختبارات Pest كاملة.">Secured a 5-role access hierarchy (Super Admin → Parent) with JWT, module-level permissions, and full Pest test coverage.</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Designed RESTful APIs with Swagger/OpenAPI documentation pre-generated and committed to Git for serverless compatibility." data-ar="صممت RESTful APIs مع توثيق Swagger مُولَّد مسبقاً وملتزم بـ Git لتوافق النشر بدون خادم.">Designed RESTful APIs with Swagger/OpenAPI pre-generated and committed to Git for serverless compatibility.</span></li>
         </ul>
-        <div class="flex flex-wrap gap-2 mb-5"><span class="chip">Laravel 13</span><span class="chip">PHP 8.4</span><span class="chip">nwidart/modules</span><span class="chip">JWT</span><span class="chip">Swagger</span><span class="chip">Pest</span></div>
+        <div class="flex flex-wrap gap-2 mb-5">
+          <span class="chip">Laravel 13</span><span class="chip">PHP 8.4</span><span class="chip">nwidart/modules</span><span class="chip">JWT</span><span class="chip">Swagger</span><span class="chip">Pest</span><span class="chip">Supabase</span><span class="chip">PostgreSQL</span>
+        </div>
         <a href="https://github.com/Wasem8/mms-backend" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-medium transition-colors"><i class="fab fa-github"></i> GitHub</a>
       </div>
     </div>
@@ -497,20 +574,65 @@
       </div>
       <div class="md:w-3/5 p-6 md:p-8">
         <div class="flex items-start justify-between mb-4">
-          <div><h3 class="text-xl font-bold text-gray-900 dark:text-white" data-en="Syrian League Platform" data-ar="منصة الدوري السوري">Syrian League Platform</h3><p class="text-sm text-blue-600 dark:text-blue-400 mt-1">Widespheres · 2026</p></div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white" data-en="Syrian League Platform" data-ar="منصة الدوري السوري">Syrian League Platform</h3>
+            <p class="text-sm text-blue-600 dark:text-blue-400 mt-1">Widespheres · 2026</p>
+          </div>
           <button onclick="closeModal('modal-league')" class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-slate-700 flex items-center justify-center text-gray-500 hover:text-red-500 transition-colors"><i class="fas fa-times text-sm"></i></button>
         </div>
         <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4" data-en="Professional football tracking application (Web + Mobile) built during my internship at Widespheres." data-ar="تطبيق تتبع كرة قدم احترافي (ويب + موبايل) بُني خلال تدريبي في Widespheres.">Professional football tracking application (Web + Mobile) built during my internship at Widespheres.</p>
         <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400 mb-5">
-          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="JWT API (V1) with 4 roles: Guest, Fan, Editor, Admin" data-ar="JWT API بـ 4 أدوار: ضيف ومشجع ومحرر ومشرف">JWT API (V1) with 4 roles: Guest, Fan, Editor, Admin</span></li>
-          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Google/Apple Social Login via Laravel Socialite" data-ar="تسجيل دخول Google/Apple عبر Laravel Socialite">Google/Apple Social Login via Laravel Socialite</span></li>
-          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Automated Standings Engine (MatchObserver) — positions, goal diff, trend" data-ar="محرك ترتيب تلقائي (MatchObserver) — المراكز وفارق الأهداف والاتجاه">Automated Standings Engine (MatchObserver)</span></li>
-          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Player Season Stats via raw SQL (SUM/AVG/COUNT)" data-ar="إحصاءات لاعبين بـ SQL خام (SUM/AVG/COUNT)">Player Season Stats via raw SQL aggregation</span></li>
-          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Transfer Logic Engine (TransferObserver) — loans, internal & external" data-ar="محرك الانتقالات (TransferObserver) — إعارات وانتقالات داخلية وخارجية">Transfer Logic Engine (TransferObserver)</span></li>
-          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Season-aware architecture with seamless multi-season switching" data-ar="معمارية تدعم مواسم متعددة مع تبديل سلس">Season-aware architecture with multi-season support</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Versioned RESTful API with JWT auth, RBAC (Guest, Fan, Editor, Admin), and Social Login via Socialite." data-ar="RESTful API موثوقة بـ JWT وRBAC (ضيف ومشجع ومحرر ومشرف) وتسجيل دخول اجتماعي عبر Socialite.">Versioned RESTful API with JWT auth, RBAC (4 roles), and Social Login (Google/Apple) via Socialite.</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Automated Standings Engine (MatchObserver) — recalculates positions, goal diff, and trend after each match." data-ar="محرك ترتيب تلقائي (MatchObserver) — يعيد حساب المراكز وفارق الأهداف والاتجاه بعد كل مباراة.">Automated Standings Engine (MatchObserver) — recalculates positions, goal diff, and trend after each match.</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Player Season Stats via raw SQL aggregation (SUM/AVG/COUNT) for goals, assists, cards, and saves." data-ar="إحصاءات لاعبين بـ SQL خام (SUM/AVG/COUNT) للأهداف والتمريرات والبطاقات والتصديات.">Player Season Stats via raw SQL (SUM/AVG/COUNT) for goals, assists, cards, and saves.</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Transfer Logic Engine (TransferObserver) — internal transfers, loans, and external moves." data-ar="محرك الانتقالات (TransferObserver) — انتقالات داخلية وإعارات وانتقالات خارجية.">Transfer Logic Engine (TransferObserver) — internal, loan, and external moves.</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Built and maintained Filament admin panels, streamlining content and league management." data-ar="بنيت وصنت لوحات Filament الإدارية لتبسيط إدارة المحتوى والدوري.">Built and maintained Filament admin panels, streamlining content and league management.</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Season-aware architecture with multi-season support and clean versioned API Resource layer." data-ar="معمارية تدعم مواسم متعددة مع طبقة API Resource نظيفة وموثوقة.">Season-aware architecture with multi-season support and clean versioned API Resource layer.</span></li>
         </ul>
-        <div class="flex flex-wrap gap-2 mb-5"><span class="chip">Laravel</span><span class="chip">JWT</span><span class="chip">Observers</span><span class="chip">Socialite</span><span class="chip">MySQL</span></div>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="chip">Laravel</span><span class="chip">JWT</span><span class="chip">Observers</span><span class="chip">Socialite</span><span class="chip">Filament</span><span class="chip">MySQL</span>
+        </div>
+        <!-- Certificate -->
+        <a href="https://widespheres.com/public/certificates/CERT-2026-XZOCOAI0" target="_blank" class="inline-flex items-center gap-2 mb-4 px-4 py-2 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 rounded-xl text-sm font-medium hover:bg-green-100 transition-colors border border-green-200 dark:border-green-800">
+          <i class="fas fa-certificate text-xs"></i>
+          <span data-en="Official Certificate · 110 hrs" data-ar="شهادة رسمية · 110 ساعة">Official Certificate · 110 hrs</span>
+        </a>
+        <br>
         <span class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-slate-700 text-gray-500 dark:text-gray-400 rounded-xl text-sm"><i class="fas fa-lock text-xs"></i><span data-en="Private — Company Project" data-ar="خاص — مشروع شركة">Private — Company Project</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Distributed Systems — NEW MODAL -->
+<div id="modal-distributed" class="modal-overlay" onclick="if(event.target===this)closeModal('modal-distributed')">
+  <div class="modal-box">
+    <div class="flex flex-col md:flex-row">
+      <div class="md:w-2/5 rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none flex flex-col items-center justify-center p-8 min-h-48" style="background:linear-gradient(135deg,#0891b2,#7c3aed)">
+        <i class="fas fa-network-wired text-white text-6xl mb-4 opacity-90"></i>
+        <span class="text-white/70 text-sm text-center" data-en="Distributed Systems Simulator" data-ar="محاكي الأنظمة الموزعة">Distributed Systems Simulator</span>
+      </div>
+      <div class="md:w-3/5 p-6 md:p-8">
+        <div class="flex items-start justify-between mb-4">
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white" data-en="Distributed Systems & Architecture Simulator" data-ar="محاكي الأنظمة الموزعة والمعمارية">Distributed Systems &amp; Architecture Simulator</h3>
+            <p class="text-sm text-blue-600 dark:text-blue-400 mt-1">2026</p>
+          </div>
+          <button onclick="closeModal('modal-distributed')" class="w-8 h-8 rounded-lg bg-gray-100 dark:bg-slate-700 flex items-center justify-center text-gray-500 hover:text-red-500 transition-colors"><i class="fas fa-times text-sm"></i></button>
+        </div>
+        <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4" data-en="A high-performance simulation engine demonstrating advanced distributed systems patterns — Saga Orchestration and Load Balancing algorithms — built with TypeScript and Next.js." data-ar="محرك محاكاة عالي الأداء يستعرض أنماط الأنظمة الموزعة المتقدمة — Saga Orchestration وخوارزميات Load Balancing — مبني بـ TypeScript وNext.js.">A simulation engine demonstrating advanced distributed systems patterns — Saga Orchestration and Load Balancing algorithms — built with TypeScript and Next.js.</p>
+        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400 mb-5">
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Implemented a Saga Transaction Orchestrator with automated backward compensation rollback (LIFO order), linear retry back-off delays, and strict promise timeout racing." data-ar="نفّذت Saga Transaction Orchestrator مع آلية تعويض عكسي تلقائي (LIFO)، وتأخيرات retry خطية، وسباق timeout صارم للـ promises.">Implemented a Saga Transaction Orchestrator with automated backward compensation (LIFO), linear retry back-off, and strict promise timeout racing.</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Engineered a Load Balancer Simulator supporting 12 algorithms: Smooth Round Robin, Power of Two Choices, Consistent Hashing (DJB2), and Weighted Least Connections." data-ar="طورت محاكي Load Balancer يدعم 12 خوارزمية: Smooth Round Robin وPower of Two Choices وConsistent Hashing (DJB2) وWeighted Least Connections.">Engineered a Load Balancer supporting 12 algorithms: Smooth Round Robin, Power of Two Choices, Consistent Hashing (DJB2), and Weighted Least Connections.</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Designed a decoupled, state-driven architecture separating algorithmic logic from runtime states, enabling real-time KPI metrics (CPU load, response time, active connections)." data-ar="صممت معمارية مفصولة تعتمد على الحالة تفصل المنطق الخوارزمي عن حالات وقت التشغيل، مع مقاييس KPI حية.">Designed a decoupled state-driven architecture with real-time KPI metrics: CPU load, response time, active connections, and compensation failures.</span></li>
+        </ul>
+        <div class="flex flex-wrap gap-2 mb-5">
+          <span class="chip">TypeScript</span><span class="chip">Next.js</span><span class="chip">Node.js</span><span class="chip">Tailwind CSS</span><span class="chip">OOP</span>
+        </div>
+        <div class="flex gap-3 flex-wrap">
+          <a href="https://github.com/Wasem8/distributed-saga-orchestrator" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-medium transition-colors"><i class="fab fa-github"></i> GitHub</a>
+          <a href="https://distributed-saga-orchestrator.vercel.app" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-xl text-sm font-medium transition-colors"><i class="fas fa-external-link-alt text-xs"></i> Live Demo</a>
+        </div>
       </div>
     </div>
   </div>
@@ -530,13 +652,13 @@
         </div>
         <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400 mb-5">
           <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="3 user roles: Admin, Department Staff, Citizen" data-ar="3 أدوار: مشرف وموظف قسم ومواطن">3 roles: Admin, Department Staff, Citizen</span></li>
-          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="15+ RESTful API endpoints for web and mobile" data-ar="أكثر من 15 نقطة API للويب والموبايل">15+ RESTful API endpoints for web and mobile</span></li>
-          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Concurrent updates via DB locks and queue jobs" data-ar="التعديلات المتزامنة عبر DB locks وQueue Jobs">Concurrent updates via DB locks and queue jobs</span></li>
-          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Real-time notifications via Firebase Cloud Messaging" data-ar="إشعارات فورية عبر Firebase Cloud Messaging">Real-time notifications via Firebase Cloud Messaging</span></li>
-          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Full audit logging and complaint lifecycle tracking" data-ar="سجلات مراجعة كاملة وتتبع دورة حياة الشكوى">Full audit logging and complaint lifecycle tracking</span></li>
-          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Clean Architecture + SOLID + Service/Repository pattern" data-ar="Clean Architecture + SOLID + نمط Service/Repository">Clean Architecture + SOLID + Service/Repository</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="15+ RESTful API endpoints for web and mobile clients across 20+ database tables." data-ar="أكثر من 15 نقطة API للويب والموبايل عبر أكثر من 20 جدول.">15+ RESTful API endpoints across 20+ database tables.</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Concurrent updates via DB locks and queue jobs for system stability." data-ar="التعديلات المتزامنة عبر DB locks وQueue Jobs لاستقرار النظام.">Concurrent updates via DB locks and queue jobs.</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Real-time notifications via Firebase Cloud Messaging." data-ar="إشعارات فورية عبر Firebase Cloud Messaging.">Real-time notifications via Firebase Cloud Messaging.</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Full audit logging and complaint lifecycle tracking." data-ar="سجلات مراجعة كاملة وتتبع دورة حياة الشكوى.">Full audit logging and complaint lifecycle tracking.</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Clean Architecture + SOLID + Service/Repository pattern." data-ar="Clean Architecture + SOLID + نمط Service/Repository.">Clean Architecture + SOLID + Service/Repository pattern.</span></li>
         </ul>
-        <div class="flex flex-wrap gap-2 mb-5"><span class="chip">Laravel 12</span><span class="chip">MySQL</span><span class="chip">Firebase FCM</span><span class="chip">Queue Jobs</span><span class="chip">JWT</span></div>
+        <div class="flex flex-wrap gap-2 mb-5"><span class="chip">Laravel 11</span><span class="chip">MySQL</span><span class="chip">Firebase FCM</span><span class="chip">Queue Jobs</span><span class="chip">JWT</span></div>
         <a href="https://github.com/Wasem8/complaints-system" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-medium transition-colors"><i class="fab fa-github"></i> GitHub</a>
       </div>
     </div>
@@ -558,13 +680,13 @@
         </div>
         <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400 mb-5">
           <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Bookings, invoices, staff management, service catalog" data-ar="حجوزات وفواتير وإدارة موظفين وكتالوج خدمات">Bookings, invoices, staff management, service catalog</span></li>
-          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="3 roles via Spatie Permissions: Admin, Receptionist, Client" data-ar="3 أدوار عبر Spatie Permissions: مشرف وموظف استقبال وعميل">3 roles via Spatie Permissions</span></li>
+          <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="3 roles via Spatie Permissions: Admin, Receptionist, Client" data-ar="3 أدوار عبر Spatie Permissions: مشرف وموظف استقبال وعميل">3 roles via Spatie Permissions: Admin, Receptionist, Client</span></li>
           <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Async queue jobs for email verification and notifications" data-ar="Queue Jobs غير متزامنة للتحقق من البريد والإشعارات">Async queue jobs for notifications and background tasks</span></li>
           <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Automated booking lifecycle with validation and cancellation rules" data-ar="دورة حجز تلقائية مع قواعد تحقق وإلغاء">Automated booking lifecycle with validation rules</span></li>
           <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Firebase Cloud Messaging for real-time client alerts" data-ar="Firebase Cloud Messaging لتنبيهات العملاء الفورية">Firebase Cloud Messaging for real-time alerts</span></li>
         </ul>
         <div class="flex flex-wrap gap-2 mb-5"><span class="chip">Laravel</span><span class="chip">MySQL</span><span class="chip">Firebase</span><span class="chip">Queues</span><span class="chip">Spatie</span></div>
-        <a href="https://github.com/Wasem8/Vera_Daraa" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-medium transition-colors"><i class="fab fa-github"></i> GitHub</a>
+        <a href="https://github.com/Waseem8/Vera_Daraa" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-medium transition-colors"><i class="fab fa-github"></i> GitHub</a>
       </div>
     </div>
   </div>
@@ -590,7 +712,7 @@
           <li class="flex gap-2"><span class="text-blue-500">▸</span><span data-en="Chain of Responsibility for transaction approvals" data-ar="Chain of Responsibility لموافقات المعاملات">Chain of Responsibility for transaction approvals</span></li>
         </ul>
         <div class="flex flex-wrap gap-2 mb-5"><span class="chip">Composite</span><span class="chip">Adapter</span><span class="chip">Decorator</span><span class="chip">Observer</span><span class="chip">Strategy</span><span class="chip">Chain of Resp.</span></div>
-        <a href="https://github.com/Wasem8/Advanced-Banking-System" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-medium transition-colors"><i class="fab fa-github"></i> GitHub</a>
+        <a href="https://github.com/Waseem8/Advanced-Banking-System" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-medium transition-colors"><i class="fab fa-github"></i> GitHub</a>
       </div>
     </div>
   </div>
